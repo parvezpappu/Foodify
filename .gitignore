@@ -1,1 +1,4 @@
 node_modules
+.postcssrc
+dist
+.parcel-cache
