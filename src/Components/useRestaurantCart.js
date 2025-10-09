@@ -16,7 +16,7 @@ import {useEffect ,useState } from "react";
         setfileredRestaurantInfo(dataDestructure)
     }
 
-    return [filteredRestaurantInfo,RestaurantInfo,setRestaurantInfo];
+    return [filteredRestaurantInfo,RestaurantInfo,setRestaurantInfo,setfileredRestaurantInfo];
  }
 
  export default useRestaurantCart;

@@ -1,12 +1,16 @@
-import React from "react"
+import React, { lazy, Suspense } from "react"
 import ReactDOM from "react-dom/client"
 import Header from "./Components/Header";
-import Body from "./Components/Body";
 import { createBrowserRouter,RouterProvider,Outlet } from "react-router";
 import Error from "./Components/Error";
-import About from"./Components/About";
-import Contact from "./Components/Contact"
+import { lazy,Suspense } from "react";
 const root=ReactDOM.createRoot(document.getElementById("root"));
+
+
+const Body=lazy(()=>import("./Components/Body"));
+const About=lazy(()=> import("./Components/About"));
+const Contact=lazy(()=>import("./Components/Contact"))
+
 
 
 const RootOfTheComponent=()=>{
@@ -24,15 +28,15 @@ const Approuter=createBrowserRouter([
         children:[
            {
             path:"/",
-            element:<Body/>
+            element:<Suspense fallback="Loading.."><Body/></Suspense>
            },
            {
             path:"/About",
-            element:<About/>
+            element:<Suspense fallback="Loading..."><About/></Suspense>
            },
            {
             path:"/Contact",
-            element:<Contact/>
+            element: <Suspense fallback="Loading.."><Contact/></Suspense>
            }
            
 
