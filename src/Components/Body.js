@@ -26,15 +26,13 @@
                setfileredRestaurantInfo(filteredTopRatedRestaurant);
                setRestaurantInfo(filteredTopRatedRestaurant);
           }}>Top Rated Restaurant</button>
-         
-      
           </div>
-
         <div className="grid gap-6 grid-cols-[repeat(auto-fill,minmax(260px,1fr))] mt-[20px] ml-[10px]">
           {
              filteredRestaurantInfo.map((value)=>(
               < RestuaratnCart key={value.info.id} resData={value.info} />
              )) 
+          
           }
         </div>
         </>

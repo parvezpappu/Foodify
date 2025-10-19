@@ -4,7 +4,9 @@ import Header from "./Components/Header";
 import { createBrowserRouter,RouterProvider,Outlet } from "react-router";
 import Error from "./Components/Error";
 import { lazy,Suspense } from "react";
+import RestaurantCardDetails from "./Components/RestaurantCartDetails";
 const root=ReactDOM.createRoot(document.getElementById("root"));
+
 
 
 const Body=lazy(()=>import("./Components/Body"));
@@ -37,12 +39,15 @@ const Approuter=createBrowserRouter([
            {
             path:"/Contact",
             element: <Suspense fallback="Loading.."><Contact/></Suspense>
+           },
+           {
+            path:"/CartDetails/:resId",
+            element:<RestaurantCardDetails/>
            }
            
 
         ],
         errorElement:<Error/>
-
     }
 ])
 

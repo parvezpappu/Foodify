@@ -16,5 +16,9 @@
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.9.4",
     "tailwindcss": "^4.1.14"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "local-cors-proxy": "^1.1.0"
   }
 }
