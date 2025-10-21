@@ -4,7 +4,7 @@ import Header from "./Components/Header";
 import { createBrowserRouter,RouterProvider,Outlet } from "react-router";
 import Error from "./Components/Error";
 import { lazy,Suspense } from "react";
-import RestaurantCardDetails from "./Components/RestaurantCartDetails";
+import RestaurantCardDetails from "./Components/RestaurantMenuDetails";
 const root=ReactDOM.createRoot(document.getElementById("root"));
 
 
