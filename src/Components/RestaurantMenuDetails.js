@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import Restaurant_Menu from "../Constants/MENU_API";
 import RestaurantCategory from "./RestaurantCategory";
+import { useParams } from "react-router";
 
 const RestaurantCardDetails = () => {
   const [resInfo, setResInfo] = useState(null);
   const [categories, setCategories] = useState([]);
-
+  const [showIndex,setShowIndex]=useState(null);
+  const {resId}=useParams();
+  const index=Number(resId)
   useEffect(() => {
     const data=Array.isArray(Restaurant_Menu)?Restaurant_Menu[0]:Restaurant_Menu;
     if (!data) return "data not found";
@@ -23,11 +26,9 @@ const RestaurantCardDetails = () => {
         ?.cardGroupMap?.REGULAR?.cards||[];
 
     const itemCards = regularCards
-      .map((c) => c.card?.card)
+      .map((c)=>c.card?.card)
       .filter((card) =>
          card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-      // ||
-         //card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
 );
     setCategories(itemCards);
   }, []);
@@ -41,8 +42,20 @@ const RestaurantCardDetails = () => {
 
       <div className="mt-4 text-left max-w-2xl mx-auto ">
         {categories.length?(
-          categories.map((value) => (
-            <RestaurantCategory key={value.title} data={value}/>
+          categories.map((value,index) => (
+            <RestaurantCategory key={value.title} data={value} showItems={index===showIndex}
+            setShowIndex={
+              ()=>
+                setShowIndex(prevIndex=>{
+                  if(prevIndex==index){
+                    return null;
+                  }
+                  else{
+                    return index;
+                  }
+                })
+            }
+            /> 
           ))
           ):(
           <p>No Categories</p>
@@ -50,6 +63,6 @@ const RestaurantCardDetails = () => {
       </div>
     </div>
   );
-};
+ };
 
-export default RestaurantCardDetails;
+ export default RestaurantCardDetails;

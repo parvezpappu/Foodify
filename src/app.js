@@ -41,15 +41,15 @@ const Approuter=createBrowserRouter([
             element: <Suspense fallback="Loading.."><Contact/></Suspense>
            },
            {
-            path:"/CartDetails/:resId",
+            path:"/CartDetails/:resName",
             element:<RestaurantCardDetails/>
            }
-           
-
+ 
         ],
         errorElement:<Error/>
+       
+        
     }
 ])
-
 root.render(< RouterProvider router={Approuter}/>);
 
