@@ -1,5 +1,11 @@
+import { useState,useContext  } from "react";
 import { Link } from "react-router";
+import UserContext from "../Constants/UserCOntext";
+
 const Header = () => {
+  const [btnName,setBtnName]=useState("Login");
+  const data=useContext(UserContext);
+   const {loggedInUser}=data;
   return (
     <header className="flex items-center justify-evenly px-10 py-4 bg-[#111] text-white shadow-md">
       <div className="flex items-center gap-2 justify-evenly">
@@ -13,7 +19,18 @@ const Header = () => {
        <Link to="/"><h1 className="cursor-pointer hover:text-yellow-400">Home</h1></Link> 
        <Link to="/About"><h1 className="cursor-pointer hover:text-yellow-400">About</h1></Link> 
        <Link to="/Contact"> <h1 className="cursor-pointer hover:text-yellow-400">Contact</h1></Link>
+       <button className="login cursor-pointer"
+       onClick={()=>{
+        btnName==="Login"?
+        setBtnName("Logout"):
+        setBtnName("Login")
+       }}
+       >
+        {btnName}
+       </button>
+       
       </nav>
+       <h1 className="px-4">{loggedInUser}</h1>
     </header>
   );
 };

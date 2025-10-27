@@ -1,11 +1,13 @@
-import React, { lazy, Suspense } from "react"
+import React, { lazy, Suspense, useEffect, useState } from "react"
 import ReactDOM from "react-dom/client"
 import Header from "./Components/Header";
 import { createBrowserRouter,RouterProvider,Outlet } from "react-router";
 import Error from "./Components/Error";
 import { lazy,Suspense } from "react";
 import RestaurantCardDetails from "./Components/RestaurantMenuDetails";
+import UserContext from "./Constants/UserCOntext";
 const root=ReactDOM.createRoot(document.getElementById("root"));
+
 
 
 
@@ -16,11 +18,24 @@ const Contact=lazy(()=>import("./Components/Contact"))
 
 
 const RootOfTheComponent=()=>{
+    
+    const [userName,setUserName]=useState();
+     //authentication
+     useEffect(()=>{
+      const data={
+       name:"parvez"
+      };
+      setUserName(data.name);
+     },[]);
+
+
     return (
+        <UserContext.Provider value={{loggedInUser:userName}}>
         <div>
          <Header/>
          <Outlet/>
         </div>
+        </UserContext.Provider>
     )
 }
 const Approuter=createBrowserRouter([
@@ -41,7 +56,7 @@ const Approuter=createBrowserRouter([
             element: <Suspense fallback="Loading.."><Contact/></Suspense>
            },
            {
-            path:"/CartDetails/:resName",
+            path:"/CartDetails/:resId",
             element:<RestaurantCardDetails/>
            }
  
