@@ -1,6 +1,6 @@
 import { useState,useContext  } from "react";
 import { Link } from "react-router";
-import UserContext from "../Constants/UserCOntext";
+import UserContext from "../Constants/UserContext";
 import { useSelector } from "react-redux";
 
 const Header = () => {
