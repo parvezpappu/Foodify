@@ -20,6 +20,7 @@
     const id = restaurantCard?.card?.card?.info?.id;
     if (name && id) menuIdByName[name] = id;
    });
+  
  
     if(RestaurantInfo.length===0){
       return (<Shimmer/>)
@@ -33,14 +34,20 @@
         <button className="button border-[2px] p-[5px] rounded-[15px] ml-[7px] cursor-pointer hover:bg-blue-900 " onClick={()=>{
          const filteredData=RestaurantInfo.filter((value)=>value.info.name.toLowerCase().includes(searchText.toLowerCase()));
          setfileredRestaurantInfo(filteredData);
-        }}>Search</button>
+          }}>Search</button>
           <button className="border-[2px] p-[5px] rounded-[15px] ml-[7px] cursor-pointer hover:bg-blue-900" onClick={()=>{
               const filteredTopRatedRestaurant=RestaurantInfo.filter((value)=> value.info.avgRatingString>=4.5);
                setfileredRestaurantInfo(filteredTopRatedRestaurant);
                setRestaurantInfo(filteredTopRatedRestaurant);
           }}>Top Rated Restaurant</button>
+          <p className="col-span-full text-sm text-gray-800 border-2 rounded-2xl p-3 bg-white [text-shadow:1px_1px_2px_black]">
+         Due to the shortage of data, only the first 5 restaurants have data to add to cart.
+         </p>
           </div>
+          
        <div className="grid gap-6 grid-cols-[repeat(auto-fill,minmax(260px,1fr))] mt-[20px] ml-[10px]">
+        
+
   {filteredRestaurantInfo.map((value) => {
     const restaurantName = value.info.name.toLowerCase();
     const menuId = menuIdByName[restaurantName] || value.info.id;
@@ -50,7 +57,7 @@
     );
   })}
 </div>
-        </>
+    </>
     )
  }
 
