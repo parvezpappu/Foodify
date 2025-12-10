@@ -6,7 +6,11 @@ import Error from "./Components/Error";
 import { lazy,Suspense } from "react";
 import RestaurantCardDetails from "./Components/RestaurantMenuDetails";
 import UserContext from "./Constants/UserCOntext";
+import { Provider } from "react-redux";
+import Cart from "./Components/Cart";
+import AppStore from "./Constants/appStore";
 const root=ReactDOM.createRoot(document.getElementById("root"));
+
 
 
 
@@ -30,12 +34,14 @@ const RootOfTheComponent=()=>{
 
 
     return (
+        <Provider store={AppStore}>
         <UserContext.Provider value={{loggedInUser:userName}}>
         <div>
          <Header/>
          <Outlet/>
         </div>
         </UserContext.Provider>
+        </Provider>
     )
 }
 const Approuter=createBrowserRouter([
@@ -58,7 +64,12 @@ const Approuter=createBrowserRouter([
            {
             path:"/CartDetails/:resId",
             element:<RestaurantCardDetails/>
+           },
+           {
+            path:"/cart",
+            element:<Cart/>
            }
+           
  
         ],
         errorElement:<Error/>

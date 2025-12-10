@@ -1,12 +1,18 @@
-
-
-const ItemList=({items})=>{
+import { useDispatch } from "react-redux";
+import { addItem } from "../Constants/cartSlice";
+const ItemList=({items,showAddButton=true})=>{
   //  console.log(items);
+   const dispatch=useDispatch();
+       const handelAddItem=(info)=>{
+          dispatch(addItem(info));
+       }
       return (
       <div>
       {items.map((item) => {
-        const info=item?.card?.info;
+        const info=item?.card?.info??item;
         if (!info)return null;
+     
+
         return (
           <div
             key={info.id ?? info.name}
@@ -34,9 +40,12 @@ const ItemList=({items})=>{
                 className="w-full h-full object-cover rounded"
               />
               {/* Add button positioned inside the image */}
-              <button className="absolute top-1.8/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white text-sm px-3 py-1 rounded shadow-md">
-                Add+
-              </button>
+             {showAddButton && (
+           <button className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-sm px-3 py-1 rounded shadow-md cursor-pointer" onClick={() => handelAddItem(info)}>
+           Add+
+          </button>
+)}
+
             </div>
             
           </div>
