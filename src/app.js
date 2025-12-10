@@ -5,7 +5,7 @@ import { createBrowserRouter,RouterProvider,Outlet } from "react-router";
 import Error from "./Components/Error";
 import { lazy,Suspense } from "react";
 import RestaurantCardDetails from "./Components/RestaurantMenuDetails";
-import UserContext from "./Constants/UserCOntext";
+import UserContext from "./Constants/UserContext";
 import { Provider } from "react-redux";
 import Cart from "./Components/Cart";
 import AppStore from "./Constants/appStore";
